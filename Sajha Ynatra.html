@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAJHA YANTRA – साझा यन्त्र</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --g1: #064E3B;
+      --g2: #059669;
+      --g3: #34D399;
+      --g4: #A7F3D0;
+      --g5: #ECFDF5;
+      --g6: #D1FAE5;
+      --amber: #D97706;
+      --amber2: #F59E0B;
+      --amber-l: #FFFBEB;
+      --amber-m: #FEF3C7;
+      --blue: #1D4ED8;
+      --blue2: #3B82F6;
+      --blue-l: #EFF6FF;
+      --blue-m: #DBEAFE;
+      --orange: #EA580C;
+      --orange-l: #FFF7ED;
+      --red: #DC2626;
+      --red-l: #FEF2F2;
+      --purple: #7C3AED;
+      --purple-l: #F5F3FF;
+      --ai: #6D28D9;
+      --ai2: #8B5CF6;
+      --ai3: #C4B5FD;
+      --ai-l: #F5F3FF;
+      --ink: #111827;
+      --ink2: #374151;
+      --ink3: #6B7280;
+      --ink4: #9CA3AF;
+      --ink5: #D1D5DB;
+      --bg: #F0FDF4;
+      --card: #fff;
+      --border: #D1FAE5;
+      --border2: #E5E7EB;
+      --sh: 0 1px 3px rgba(0, 0, 0, .08);
+      --shm: 0 4px 6px -1px rgba(0, 0, 0, .07);
+      --shl: 0 10px 15px -3px rgba(0, 0, 0, .08);
+      --shxl: 0 20px 25px -5px rgba(0, 0, 0, .1);
+      --r: 14px;
+      --rs: 10px;
+      --rx: 7px;
+      --pill: 999px;
+      --font: 'Inter', 'Noto Sans Devanagari', sans-serif;
+      --ph-w: 300px;
+      --ph-h: 600px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      font-family: var(--font);
+      background: linear-gradient(145deg, #0F172A, #1E293B 50%, #0F2027);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+
+    /* body: center phone on screen */
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    /* CENTER - PHONE */
+    .phone-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .phone-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .4);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .phone {
+      width: var(--ph-w);
+      height: var(--ph-h);
+      border-radius: 38px;
+      border: 6px solid #0F172A;
+      background: #fff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shxl), 0 0 0 1px rgba(255, 255, 255, .07), 0 0 60px rgba(5, 150, 105, .15);
+      position: relative;
+    }
+
+    .phone::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 72px;
+      height: 5px;
+      background: #0F172A;
+      border-radius: 10px;
+      z-index: 200;
+    }
+
+    .sbar {
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      padding-top: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      flex-shrink: 0;
+      background: #fff;
+    }
+
+    .screen {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: none;
+      background: var(--bg);
+    }
+
+    .screen::-webkit-scrollbar {
+      display: none;
+    }
+
+    .sw {
+      background: #fff;
+    }
+
+    .dots {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+    }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .2);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .dot.on {
+      background: var(--g2);
+      width: 14px;
+      border-radius: 3px;
+    }
+
+    /* RIGHT - AI PANEL */
+    .ai-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ai-header {
+      background: linear-gradient(135deg, #3B0764, #6D28D9, #4F46E5);
+      border-radius: 14px;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='30'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .ai-crown {
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, .15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .ai-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .ai-sub {
+      font-size: 10px;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .ai-card {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 14px;
+      padding: 14px;
+      backdrop-filter: blur(8px);
+    }
+
+    .ai-card-title {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, .45);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ai-card-title i {
+      color: var(--ai3);
+    }
+
+    /* AI Predict blocks */
+    .pred-block {
+      background: rgba(109, 40, 217, .15);
+      border: 1px solid rgba(196, 181, 253, .2);
+      border-radius: 10px;
+      padding: 11px;
+      margin-bottom: 8px;
+    }
+
+    .pred-label {
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--ai3);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pred-value {
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+
+    .pred-sub {
+      font-size: 10px;
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .pred-bar {
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, .1);
+      overflow: hidden;
+      margin: 5px 0 2px;
+    }
+
+    .pred-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--ai), var(--ai2));
+    }
+
+    .weather-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 9px;
+    }
+
+    .wday {
+      flex: 1;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 8px;
+      padding: 7px 4px;
+      text-align: center;
+    }
+
+    .wday .wd {
+      font-size: 9px;
+      color: rgba(255, 255, 255, .4);
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .wday .wi {
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    .wday .wt {
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .wday .wp {
+      font-size: 9px;
+      color: rgba(255, 255, 255, .4);
+    }
+
+    .wday.best {
+      border-color: rgba(52, 211, 153, .4);
+      background: rgba(5, 150, 105, .15);
+    }
+
+    .ai-insight {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 8px;
+      background: rgba(255, 255, 255, .04);
+      border-radius: 8px;
+      margin-bottom: 6px;
+      border-left: 2px solid var(--ai2);
+    }
+
+    .ai-insight:last-child {
+      margin-bottom: 0;
+    }
+
+    .ai-insight i {
+      font-size: 12px;
+      color: var(--ai3);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .ai-insight-text {
+      font-size: 10.5px;
+      color: rgba(255, 255, 255, .7);
+      line-height: 1.5;
+    }
+
+    .ai-insight-text b {
+      color: #fff;
+    }
+
+    .veh-health {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .vh-card {
+      flex: 1;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .vh-icon {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .vh-name {
+      font-size: 9px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .5);
+      margin-bottom: 4px;
+    }
+
+    .vh-score {
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .vh-status {
+      font-size: 8.5px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .health-bar {
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, .1);
+      overflow: hidden;
+      margin: 4px auto;
+      width: 80%;
+    }
+
+    .hb-fill {
+      height: 100%;
+      border-radius: 2px;
+    }
+
+    .demand-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 60px;
+      margin-bottom: 8px;
+    }
+
+    .dc-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .dc-bar {
+      width: 100%;
+      border-radius: 3px 3px 0 0;
+      min-height: 4px;
+      transition: height .3s;
+    }
+
+    .dc-lbl {
+      font-size: 8px;
+      color: rgba(255, 255, 255, .4);
+      font-weight: 600;
+    }
+
+    .dc-val {
+      font-size: 8px;
+      color: rgba(255, 255, 255, .6);
+      font-weight: 700;
+    }
+
+    .ai-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 9px;
+      border: none;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--ai), var(--ai2));
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(109, 40, 217, .4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: var(--font);
+      transition: all .2s;
+      margin-top: 4px;
+    }
+
+    .ai-btn:hover {
+      opacity: .9;
+      transform: translateY(-1px);
+    }
+
+    .ai-loading {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      color: var(--ai3);
+      padding: 10px;
+      background: rgba(109, 40, 217, .15);
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(196, 181, 253, .3);
+      border-top-color: var(--ai2);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .ai-response {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .8);
+      line-height: 1.6;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 9px;
+      padding: 11px;
+    }
+
+    .ai-response b {
+      color: #C4B5FD;
+    }
+
+    .ai-response .highlight {
+      background: rgba(109, 40, 217, .2);
+      border-radius: 4px;
+      padding: 2px 6px;
+      color: var(--ai3);
+    }
+
+    .location-picker {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-bottom: 9px;
+    }
+
+    .loc-btn {
+      padding: 4px 9px;
+      border-radius: var(--pill);
+      border: 1px solid rgba(255, 255, 255, .15);
+      background: rgba(255, 255, 255, .05);
+      color: rgba(255, 255, 255, .6);
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .loc-btn.sel {
+      border-color: var(--ai2);
+      background: rgba(109, 40, 217, .25);
+      color: var(--ai3);
+    }
+
+    .profit-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+      font-size: 11px;
+    }
+
+    .profit-row:last-child {
+      border: none;
+    }
+
+    .profit-k {
+      color: rgba(255, 255, 255, .45);
+    }
+
+    .profit-v {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .profit-v.up {
+      color: #34D399;
+    }
+
+    .profit-v.down {
+      color: #F87171;
+    }
+
+
+    /* PHONE INTERNALS */
+    .nbar {
+      height: 46px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 8px;
+      background: #fff;
+      border-bottom: 1px solid var(--border2);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      flex-shrink: 0;
+    }
+
+    .nbk {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--g5);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--g1);
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .ntitle {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .nact {
+      margin-left: auto;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--g2);
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--font);
+    }
+
+    .bnav {
+      height: 54px;
+      display: flex;
+      background: #fff;
+      border-top: 1.5px solid var(--border2);
+      flex-shrink: 0;
+    }
+
+    .bni {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      font-size: 8px;
+      font-weight: 600;
+      color: var(--ink4);
+      cursor: pointer;
+      border: none;
+      background: none;
+      position: relative;
+      font-family: var(--font);
+    }
+
+    .bni.on {
+      color: var(--g2);
+    }
+
+    .bni i {
+      font-size: 17px;
+    }
+
+    .bni.on i {
+      background: var(--g5);
+      border-radius: 9px;
+      padding: 2px 8px;
+    }
+
+    .bni .nd {
+      position: absolute;
+      top: 6px;
+      right: calc(50% - 12px);
+      width: 6px;
+      height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      border: 1.5px solid #fff;
+    }
+
+    .fu {
+      animation: fu .3s ease forwards;
+    }
+
+    @keyframes fu {
+      from {
+        opacity: 0;
+        transform: translateY(10px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      padding: 11px;
+      margin-bottom: 8px;
+      box-shadow: var(--sh);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .card:hover {
+      border-color: var(--g3);
+      box-shadow: var(--shm);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-size: 9.5px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: var(--pill);
+    }
+
+    .tg {
+      background: var(--g5);
+      color: var(--g1);
+      border: 1px solid var(--g4);
+    }
+
+    .ta {
+      background: var(--amber-m);
+      color: #92400E;
+      border: 1px solid #FDE68A;
+    }
+
+    .tb {
+      background: var(--blue-m);
+      color: #1E40AF;
+      border: 1px solid #BFDBFE;
+    }
+
+    .tr {
+      background: var(--red-l);
+      color: var(--red);
+      border: 1px solid #FECACA;
+    }
+
+    .tp {
+      background: var(--purple-l);
+      color: var(--purple);
+      border: 1px solid #DDD6FE;
+    }
+
+    .sh {
+      font-size: 9.5px;
+      font-weight: 800;
+      color: var(--ink3);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      margin: 11px 0 6px;
+    }
+
+    .av {
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--g4), var(--g5));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--g1);
+      flex-shrink: 0;
+    }
+
+    .stars {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      color: var(--amber2);
+    }
+
+    .srch {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1.5px solid var(--border2);
+      border-radius: 10px;
+      padding: 0 10px;
+      gap: 7px;
+      height: 38px;
+    }
+
+    .srch:focus-within {
+      border-color: var(--g2);
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, .1);
+    }
+
+    .srch input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 12px;
+      color: var(--ink);
+      font-family: var(--font);
+      background: transparent;
+    }
+
+    .info {
+      border-radius: var(--rx);
+      padding: 8px 10px;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      margin-bottom: 9px;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .info i {
+      margin-top: 1px;
+      flex-shrink: 0;
+      font-size: 12px;
+    }
+
+    .ig {
+      background: var(--g5);
+      border: 1px solid var(--g4);
+      color: var(--g1);
+    }
+
+    .ia {
+      background: var(--amber-m);
+      border: 1px solid #FDE68A;
+      color: #92400E;
+    }
+
+    .ib {
+      background: var(--blue-m);
+      border: 1px solid #BFDBFE;
+      color: #1E40AF;
+    }
+
+    .ir {
+      background: var(--red-l);
+      border: 1px solid #FECACA;
+      color: var(--red);
+    }
+
+    .ip {
+      background: var(--purple-l);
+      border: 1px solid #DDD6FE;
+      color: var(--purple);
+    }
+
+    .stat {
+      border-radius: 11px;
+      padding: 10px 7px;
+      text-align: center;
+    }
+
+    .sv {
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .sl {
+      font-size: 9px;
+      font-weight: 600;
+      color: var(--ink3);
+      margin-top: 2px;
+    }
+
+    .pg {
+      height: 4px;
+      border-radius: 2px;
+      background: var(--g6);
+      overflow: hidden;
+      margin: 3px 0;
+    }
+
+    .pf {
+      height: 100%;
+      background: linear-gradient(90deg, var(--g1), var(--g2));
+      border-radius: 2px;
+    }
+
+    .steps {
+      display: flex;
+      gap: 0;
+      position: relative;
+      margin-bottom: 13px;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      height: 2px;
+      background: var(--border2);
+      z-index: 0;
+    }
+
+    .step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      z-index: 1;
+    }
+
+    .sc {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      border: 2px solid var(--border2);
+      background: #fff;
+    }
+
+    .sc.done {
+      background: var(--g2);
+      border-color: var(--g2);
+      color: #fff;
+    }
+
+    .sc.act {
+      background: #fff;
+      border-color: var(--g2);
+      color: var(--g2);
+    }
+
+    .sl2 {
+      font-size: 7.5px;
+      color: var(--ink3);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .ad {
+      background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
+      border: 1px solid #FDE68A;
+      border-radius: 10px;
+      padding: 9px 11px;
+      display: flex;
+      gap: 9px;
+      align-items: center;
+      margin-bottom: 9px;
+      cursor: pointer;
+    }
+
+    .svc {
+      border-radius: 11px;
+      padding: 9px 4px;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid rgba(0, 0, 0, .05);
+      transition: transform .15s;
+    }
+
+    .svc:hover {
+      transform: scale(1.06);
+    }
+
+    .svc .ei {
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+
+    .svc .en {
+      font-size: 7.5px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .role {
+      background: #fff;
+      border-radius: 13px;
+      padding: 15px 10px;
+      text-align: center;
+      border: 2px solid var(--border2);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .role:hover {
+      border-color: var(--g2);
+      transform: translateY(-2px);
+    }
+
+    .role .ri {
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+
+    .role .rn {
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .role .rs {
+      font-size: 9px;
+      color: var(--ink3);
+      margin-top: 2px;
+    }
+
+    .fin {
+      width: 100%;
+      padding: 9px 11px;
+      border-radius: var(--rx);
+      border: 1.5px solid var(--border2);
+      font-size: 12px;
+      font-family: var(--font);
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+    }
+
+    .fin:focus {
+      border-color: var(--g2);
+    }
+
+    .bp {
+      width: 100%;
+      padding: 11px;
+      border-radius: 10px;
+      border: none;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--g1), var(--g2));
+      color: #fff;
+      font-family: var(--font);
+    }
+
+    .bo {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid var(--g2);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      background: transparent;
+      color: var(--g2);
+      font-family: var(--font);
+    }
+
+    .bb {
+      width: 100%;
+      padding: 11px;
+      border-radius: 10px;
+      border: none;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      color: #fff;
+      font-family: var(--font);
+    }
+
+    .ba {
+      width: 100%;
+      padding: 11px;
+      border-radius: 10px;
+      border: none;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(135deg, #92400E, var(--amber));
+      color: #fff;
+      font-family: var(--font);
+    }
+
+    .sm {
+      padding: 6px 11px;
+      border-radius: var(--pill);
+      border: none;
+      font-size: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: var(--font);
+    }
+
+    .smg {
+      background: var(--g2);
+      color: #fff;
+    }
+
+    .smr {
+      background: var(--red-l);
+      color: var(--red);
+      border: 1px solid #FECACA;
+    }
+
+    .smb {
+      background: var(--blue-l);
+      color: var(--blue);
+      border: 1px solid #BFDBFE;
+    }
+
+    .smo {
+      background: transparent;
+      border: 1.5px solid var(--border2);
+      color: var(--ink3);
+    }
+
+    .sma {
+      background: var(--amber-m);
+      color: #92400E;
+      border: 1px solid #FDE68A;
+    }
+
+    .nbadge {
+      background: var(--red);
+      color: #fff;
+      font-size: 8px;
+      font-weight: 800;
+      padding: 1px 4px;
+      border-radius: var(--pill);
+      position: absolute;
+      top: -3px;
+      right: -3px;
+    }
+
+    .gmap {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #DCFCE7, #BBF7D0, #86EFAC);
+      position: relative;
+    }
+
+    .gv {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+    }
+
+    .gv::after {
+      content: '';
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid;
+      opacity: .5;
+      animation: rp 2s infinite;
+    }
+
+    @keyframes rp {
+      0% {
+        transform: scale(.8);
+        opacity: .7
+      }
+
+      100% {
+        transform: scale(1.5);
+        opacity: 0
+      }
+    }
+
+    .jcard {
+      background: #fff;
+      border-radius: 12px;
+      border-left: 4px solid;
+      padding: 11px;
+      margin-bottom: 8px;
+    }
+
+    .mimg {
+      border-radius: 10px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #F0FDF4, #DCFCE7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .gpsd {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .gon {
+      background: #22C55E;
+      animation: gp 2s infinite;
+    }
+
+    .gidle {
+      background: var(--amber2);
+    }
+
+    .goff {
+      background: var(--red);
+    }
+
+    @keyframes gp {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 2px rgba(34, 197, 94, .3)
+      }
+
+      50% {
+        box-shadow: 0 0 0 4px rgba(34, 197, 94, .1)
+      }
+    }
+
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+      margin-bottom: 5px;
+    }
+
+    .cd {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .cav {
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid var(--border2);
+    }
+
+    .csel {
+      background: linear-gradient(135deg, var(--g1), var(--g2));
+      color: #fff;
+    }
+
+    .cbsy {
+      background: var(--red-l);
+      color: #FCA5A5;
+      border: 1px solid #FECACA;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    .cpst {
+      background: #F9FAFB;
+      color: var(--ink5);
+      cursor: not-allowed;
+    }
+
+    .ctod {
+      border: 2px solid var(--g2);
+    }
+
+    .cd .bz {
+      position: absolute;
+      bottom: 1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 3px;
+      background: var(--red);
+      border-radius: 50%;
+    }
+
+    .po {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px;
+      border-radius: 9px;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+
+    .tbl {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+    }
+
+    .tbl th {
+      background: var(--g5);
+      color: var(--g1);
+      font-weight: 700;
+      padding: 6px 8px;
+      text-align: left;
+    }
+
+    .tbl td {
+      padding: 6px 8px;
+      border-bottom: 1px solid var(--border2);
+      color: var(--ink2);
+    }
+
+    .vtmb {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      margin-bottom: 9px;
+    }
+
+    .flb {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--ink2);
+      margin-bottom: 3px;
+      display: block;
+    }
+
+    /* AI PREMIUM badge in phone */
+    .ai-badge-phone {
+      background: linear-gradient(135deg, var(--ai), var(--ai2));
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: var(--pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    /* bottom status bar */
+    .bottom-bar {
+      width: 100%;
+      max-width: 1280px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 14px;
+      padding: 10px 18px;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 12px;
+    }
+
+    .bbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .bstat {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      color: rgba(255, 255, 255, .4);
+    }
+
+    .bstat i {
+      font-size: 11px;
+    }
+
+    .bstat b {
+      color: rgba(255, 255, 255, .75);
+    }
+
+    .ku-badge {
+      background: linear-gradient(135deg, #B45309, #D97706);
+      border-radius: 7px;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="phone-col">
+    <div class="phone">
+      <div class="sbar">
+        <span>9:41</span>
+        <div style="display:flex;gap:4px;align-items:center;">
+          <i class="fa-solid fa-signal fa-xs"></i>
+          <i class="fa-solid fa-wifi fa-xs"></i>
+          <i class="fa-solid fa-battery-three-quarters fa-xs"></i>
+        </div>
+      </div>
+      <div class="screen" id="fs"></div>
+      <div id="fb"></div>
+    </div>
+    <div class="dots" id="fd"></div>
+    <div style="display:flex;gap:6px;margin-top:6px;">
+      <button onclick="lang=lang==='en'?'ne':'en';render()"
+        style="padding:5px 12px;border-radius:var(--pill);border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);font-size:10px;font-weight:700;cursor:pointer;font-family:var(--font);">EN
+        / नेपाली</button>
+      <button onclick="fgo(0)"
+        style="padding:5px 12px;border-radius:var(--pill);border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);font-size:10px;font-weight:700;cursor:pointer;font-family:var(--font);">⟳
+        Reset</button>
+    </div>
+  </div>
+  <script>
+
+    // ─── DATA ───────────────────────────────
+    let lang = 'en', selDate = 15, mod = 'f';
+    const TODAY = 15, BUSY = ['18', '21', '25'];
+    let farmerBk = [
+      { id: 'BK001', svc: 'Rotavator Ploughing', prov: 'Shrestha Rentals', date: 'Jun 20', amt: 5000, dep: 1500, status: 'confirmed' },
+      { id: 'BK002', svc: 'Laser Land Leveling', prov: 'Green Farm Co-op', date: 'Jun 28', amt: 8000, dep: 2400, status: 'pending_owner' },
+    ];
+    let provBk = [
+      { id: 'BK001', farmer: 'Ram Bahadur Thapa', ph: '9841112233', svc: 'Rotavator · 4 hrs', loc: 'Dhulikhel-5', date: 'Jun 20, 6AM', amt: 5000, dep: 1500, status: 'approved', veh: 'V001' },
+      { id: 'BK003', farmer: 'Sita Devi Sharma', ph: '9851119988', svc: 'Power Harrow · 2 hrs', loc: 'Banepa-2', date: 'Jun 22, 7AM', amt: 3200, dep: 960, status: 'pending', veh: 'V002' },
+    ];
+    let VEH = [
+      { id: 'V001', name: 'Mahindra Rotavator 245', type: 'Rotavator', driver: 'Bishnu Tamang', dph: '9841234567', status: 'running', area: 1.4, speed: 4, fuel: 68, lic: 'Ba-1-Kha-3456' },
+      { id: 'V002', name: 'Sonalika Tractor DI 35', type: 'Tractor', driver: 'Kamal BK', dph: '9851234567', status: 'idle', area: 0, speed: 0, fuel: 45, lic: 'Ka-2-Ga-7890' },
+      { id: 'V003', name: 'Combine Harvester 2WD', type: 'Harvester', driver: 'Unassigned', dph: '-', status: 'maintenance', area: 0, speed: 0, fuel: 22, lic: '-' },
+    ];
+    let DRIVERS = [
+      { id: 'D001', name: 'Bishnu Tamang', ph: '9841234567', lic: 'K-12-34-5678', veh: 'Rotavator 245', joined: 'Mar 2025', status: 'active', perms: ['location', 'customer_contact', 'payment_view'], done: 28, today: 2 },
+      { id: 'D002', name: 'Kamal BK', ph: '9851234567', lic: 'K-98-76-5432', veh: 'Tractor DI 35', joined: 'Jun 2026', status: 'pending', perms: ['location'], done: 5, today: 1 },
+    ];
+    const SIDX = [
+      { l: 'Rotavator Ploughing', c: 'Agricultural', e: '🚜' }, { l: 'Power Harrow', c: 'Agricultural', e: '⚙️' },
+      { l: 'Disc Plough', c: 'Agricultural', e: '🔧' }, { l: 'Combine Harvesting', c: 'Agricultural', e: '✂️' },
+      { l: 'Rice Transplanting', c: 'Agricultural', e: '🌾' }, { l: 'Threshing', c: 'Agricultural', e: '🌀' },
+      { l: 'Zero-Till Seed Drill', c: 'Agricultural', e: '🌱' }, { l: 'Laser Land Leveling', c: 'Advanced', e: '📐' },
+      { l: 'Deep Boring', c: 'Advanced', e: '⛏️' }, { l: 'Drone Spraying', c: 'Advanced', e: '🚁' },
+      { l: 'Smart Irrigation', c: 'Advanced', e: '💧' }, { l: 'Farm Automation', c: 'Advanced', e: '🤖' },
+      { l: 'Precision Agriculture', c: 'Advanced', e: '📊' }, { l: 'Seeds', c: 'Inputs', e: '🌰' },
+      { l: 'Fertilizers', c: 'Inputs', e: '🧪' }, { l: 'Insecticides', c: 'Inputs', e: '🛡️' },
+      { l: 'Spare Parts', c: 'Inputs', e: '🔩' }, { l: 'Repair Services', c: 'Technical', e: '🔧' },
+      { l: 'Mechanical Assistance', c: 'Technical', e: '👨‍🔧' }, { l: 'Technical Consultation', c: 'Technical', e: '📞' },
+    ];
+    const ne = { home: 'गृह', search: 'खोज', bookings: 'बुकिङ', alerts: 'सूचना', profile: 'प्रोफाइल', dashboard: 'ड्यासबोर्ड', fleet: 'फ्लिट', orders: 'अर्डर', drivers: 'चालक', analytics: 'विश्लेषण', jobs: 'मेरा काम', nav: 'नेभिगेट', done: 'सम्पन्न' };
+    const en = { home: 'Home', search: 'Search', bookings: 'Bookings', alerts: 'Alerts', profile: 'Profile', dashboard: 'Dashboard', fleet: 'GPS Fleet', orders: 'Orders', drivers: 'Drivers', analytics: 'Analytics', jobs: 'My Jobs', nav: 'Navigate', done: 'Complete' };
+    function t(k) { return (lang === 'ne' ? ne : en)[k] || k; }
+
+    // ─── FARMER SCREENS ──────────────────────
+    let fIdx = 0; const FS = [];
+
+    FS[0] = () => `<div class="fu sw" style="height:100%;display:flex;flex-direction:column;background:linear-gradient(160deg,#064E3B,#059669 55%,#34D399);">
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px 16px;text-align:center;">
+  <div style="width:66px;height:66px;background:rgba(255,255,255,.15);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:11px;">🌱</div>
+  <div style="font-size:23px;font-weight:800;color:#fff;letter-spacing:-.3px;">SAJHA YANTRA</div>
+  <div style="font-family:'Noto Sans Devanagari',sans-serif;font-size:13px;color:rgba(255,255,255,.75);margin:3px 0;">साझा यन्त्र</div>
+  <div style="font-size:10px;color:rgba(255,255,255,.5);margin-bottom:16px;">Smart Agricultural Services for Nepal</div>
+  <div style="display:flex;gap:6px;margin-bottom:18px;">
+    <button onclick="lang='en';renderAll()" style="padding:5px 14px;border-radius:var(--pill);border:2px solid rgba(255,255,255,.5);background:${lang === 'en' ? 'rgba(255,255,255,.25)' : 'transparent'};color:#fff;font-size:11px;font-weight:700;cursor:pointer;">English</button>
+    <button onclick="lang='ne';renderAll()" style="padding:5px 14px;border-radius:var(--pill);border:2px solid rgba(255,255,255,.5);background:${lang === 'ne' ? 'rgba(255,255,255,.25)' : 'transparent'};color:#fff;font-size:11px;font-weight:700;cursor:pointer;font-family:'Noto Sans Devanagari',sans-serif;">नेपाली</button>
+  </div>
+  <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.9);margin-bottom:11px;">Select Your Role</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;">
+    <div class="role" onclick="fgo(1)"><div class="ri">🚜</div><div class="rn">Farmer</div><div class="rs">किसान</div></div>
+    <div class="role" onclick="pgo(1)"><div class="ri">🏢</div><div class="rn">Provider</div><div class="rs">सेवा प्रदायक</div></div>
+    <div class="role" onclick="ogo(1)"><div class="ri">👨‍🔧</div><div class="rn">Operator</div><div class="rs">अपरेटर</div></div>
+  </div>
+</div>
+<div style="padding:12px;text-align:center;font-size:9px;color:rgba(255,255,255,.3);">eSewa · Khalti · ConnectIPS · Works Offline · SMS Alerts</div>
+</div>`;
+
+    FS[1] = () => `<div class="fu" style="padding-bottom:56px;">
+<div style="background:linear-gradient(135deg,var(--g1),var(--g2));padding:11px 11px 17px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+    <div><div style="font-size:9px;color:rgba(255,255,255,.65);">नमस्ते 👋 ${lang === 'ne' ? 'राम बहादुर' : 'Ram Bahadur'}</div><div style="font-size:14px;font-weight:800;color:#fff;">Dhulikhel, Kavrepalanchok</div></div>
+    <div style="display:flex;gap:5px;align-items:center;">
+      <button onclick="lang=lang==='en'?'ne':'en';renderAll()" style="background:rgba(255,255,255,.18);border:none;border-radius:var(--pill);padding:3px 8px;color:#fff;font-size:9px;font-weight:700;cursor:pointer;">${lang === 'en' ? 'नेपाली' : 'EN'}</button>
+      <div style="position:relative;cursor:pointer;" onclick="fgo(9)"><div style="width:28px;height:28px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;"><i class="fa-solid fa-bell"></i></div><span class="nbadge">3</span></div>
+    </div>
+  </div>
+  <div onclick="fgo(2)" class="srch" style="background:rgba(255,255,255,.95);border:none;cursor:pointer;height:34px;">
+    <i class="fa-solid fa-magnifying-glass" style="color:var(--ink4);font-size:12px;"></i>
+    <span style="font-size:11.5px;color:var(--ink4);flex:1;">${lang === 'ne' ? 'सेवा खोज्नुहोस्...' : 'Search service or machine...'}</span>
+    <i class="fa-solid fa-microphone" style="color:var(--g2);font-size:13px;"></i>
+  </div>
+</div>
+<div style="background:var(--bg);border-radius:16px 16px 0 0;margin-top:-8px;padding:11px;">
+  <div class="info ip" style="margin-bottom:9px;"><i class="fa-solid fa-wand-magic-sparkles"></i><div style="font-size:10.5px;"><b>AI Tip:</b> Best ploughing window: Tue–Wed before monsoon. Book now before slots fill!</div></div>
+  <div class="ad"><div style="font-size:20px;">🌾</div><div style="flex:1;"><div style="font-size:8.5px;font-weight:800;color:#92400E;">AD · सिद्ध बाली बीउ</div><div style="font-size:11px;font-weight:700;">Hybrid Paddy Seeds — 20% OFF</div></div><span class="tag ta">SALE</span></div>
+  <div class="sh"><i class="fa-solid fa-tractor" style="color:var(--g2);margin-right:4px;"></i>${lang === 'ne' ? 'कृषि सेवाहरू' : 'Agricultural Services'}</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:11px;">
+    ${[{ e: '🚜', en: 'Plough\n&Harrow', ne: 'जोत्ने', bg: '#ECFDF5', c: '#064E3B' }, { e: '✂️', en: 'Harvest\n&Thresh', ne: 'कटाई', bg: '#EFF6FF', c: '#1E40AF' }, { e: '💧', en: 'Irrigation', ne: 'सिँचाई', bg: '#FFF7ED', c: '#9A3412' }, { e: '🌱', en: 'Transplant\n&Drill', ne: 'रोपाई', bg: '#F5F3FF', c: '#5B21B6' }, { e: '🚜', en: 'Rotavator', ne: 'रोटाभेटर', bg: '#ECFDF5', c: '#064E3B' }, { e: '🌾', en: 'Rice\nTransplant', ne: 'धान रोपाई', bg: '#FFFBEB', c: '#92400E' }, { e: '🌀', en: 'Threshing', ne: 'दाउनी', bg: '#FEF2F2', c: '#991B1B' }, { e: '🌿', en: 'Zero-Till\nDrill', ne: 'जिरो-टिल', bg: '#F0FDF4', c: '#166534' }].map(s => `<div class="svc" onclick="fgo(4)" style="background:${s.bg};"><div class="ei">${s.e}</div><div class="en" style="color:${s.c};white-space:pre-line;">${lang === 'ne' ? s.ne : s.en}</div></div>`).join('')}
+  </div>
+  <div class="sh"><i class="fa-solid fa-bolt" style="color:var(--amber2);margin-right:4px;"></i>${lang === 'ne' ? 'उन्नत सेवाहरू' : 'Advanced Services'}</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:11px;">
+    ${[{ e: '📐', en: 'Laser\nLevel', ne: 'लेजर', bg: '#EFF6FF', c: '#1E40AF' }, { e: '⛏️', en: 'Deep\nBoring', ne: 'खनाइ', bg: '#FEF2F2', c: '#991B1B' }, { e: '🚁', en: 'Drone\nSpray', ne: 'ड्रोन', bg: '#F0FDF4', c: '#166534' }, { e: '🤖', en: 'Farm\nAuto', ne: 'स्वचालित', bg: '#F5F3FF', c: '#5B21B6' }, { e: '📊', en: 'Precision\nAgri', ne: 'परिशुद्ध', bg: '#EFF6FF', c: '#1E40AF' }, { e: '💧', en: 'Smart\nIrrigate', ne: 'सिँचाई', bg: '#ECFDF5', c: '#064E3B' }, { e: '📡', en: 'Sensor\nMonitor', ne: 'सेन्सर', bg: '#F5F3FF', c: '#5B21B6' }, { e: '🌡️', en: 'Soil\nAnalysis', ne: 'माटो', bg: '#FFFBEB', c: '#92400E' }].map(s => `<div class="svc" onclick="fgo(4)" style="background:${s.bg};"><div class="ei">${s.e}</div><div class="en" style="color:${s.c};white-space:pre-line;">${lang === 'ne' ? s.ne : s.en}</div></div>`).join('')}
+  </div>
+  ${farmerBk.length ? `<div class="sh"><i class="fa-solid fa-clock-rotate-left" style="color:var(--g2);margin-right:4px;"></i>Recent Bookings</div>${farmerBk.map(b => `<div class="card" onclick="fgo(10)" style="display:flex;gap:8px;align-items:center;padding:9px;"><div style="width:36px;height:36px;border-radius:9px;background:${b.status === 'confirmed' ? 'var(--g5)' : 'var(--amber-m)'};display:flex;align-items:center;justify-content:center;font-size:18px;">🚜</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${b.svc}</div><div style="font-size:9.5px;color:var(--ink3);">${b.date} · ${b.prov}</div></div><span class="tag ${b.status === 'confirmed' ? 'tg' : b.status === 'pending_owner' ? 'ta' : 'tb'}">${b.status === 'confirmed' ? '✓' : '⏳'}</span></div>`).join('')}` : ''}
+</div></div>`;
+
+    FS[2] = () => `<div class="fu sw" style="height:100%;display:flex;flex-direction:column;">
+<div style="padding:9px 11px;border-bottom:1px solid var(--border2);"><div class="srch"><i class="fa-solid fa-magnifying-glass" style="color:var(--ink4);font-size:12px;"></i><input id="sq" autofocus placeholder="Search service, machine, provider..." oninput="doSearch(this.value)"><button style="background:var(--g5);border:none;border-radius:6px;padding:4px 7px;cursor:pointer;color:var(--g2);font-size:13px;"><i class="fa-solid fa-microphone"></i></button></div></div>
+<div id="sr" style="flex:1;overflow-y:auto;padding:9px 11px;">
+  <div class="sh">RECENT</div>
+  ${['Rotavator Ploughing', 'Laser Land Leveling', 'Rice Transplanting', 'Power Harrow'].map(x => `<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border2);cursor:pointer;" onclick="fgo(4)"><i class="fa-solid fa-clock-rotate-left" style="color:var(--ink4);font-size:11px;width:16px;text-align:center;"></i><span style="font-size:11.5px;flex:1;">${x}</span><i class="fa-solid fa-arrow-up-left" style="color:var(--ink4);font-size:10px;"></i></div>`).join('')}
+  <div class="sh" style="margin-top:10px;">POPULAR</div>
+  ${SIDX.slice(0, 8).map(s => `<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border2);cursor:pointer;" onclick="fgo(4)"><span style="font-size:17px;width:24px;text-align:center;">${s.e}</span><div style="flex:1;"><div style="font-size:11.5px;font-weight:600;">${s.l}</div><div style="font-size:9.5px;color:var(--ink4);">${s.c}</div></div><i class="fa-solid fa-chevron-right" style="color:var(--ink4);font-size:10px;"></i></div>`).join('')}
+</div></div>`;
+    window.doSearch = function (q) { const r = document.getElementById('sr'); if (!r) return; if (!q) { r.innerHTML = '<div style="padding:16px;text-align:center;color:var(--ink3);font-size:12px;">Type to search...</div>'; return; } const res = SIDX.filter(s => s.l.toLowerCase().includes(q.toLowerCase()) || s.c.toLowerCase().includes(q.toLowerCase())); r.innerHTML = res.length ? `<div class="sh">${res.length} RESULT${res.length > 1 ? 'S' : ''}</div>` + res.map(s => `<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border2);cursor:pointer;" onclick="fgo(4)"><span style="font-size:17px;width:24px;text-align:center;">${s.e}</span><div style="flex:1;"><div style="font-size:11.5px;font-weight:600;">${s.l}</div><div style="font-size:9.5px;color:var(--ink4);">${s.c}</div></div><i class="fa-solid fa-chevron-right" style="color:var(--ink4);font-size:10px;"></i></div>`).join('') : `<div style="padding:24px;text-align:center;"><div style="font-size:28px;margin-bottom:6px;">🔍</div><div style="font-size:12px;color:var(--ink3);">No results for "${q}"</div></div>`; };
+
+    FS[3] = () => `<div class="fu" style="padding-bottom:56px;">
+<div class="nbar"><button class="nbk" onclick="fgo(1)"><i class="fa-solid fa-arrow-left"></i></button><span class="ntitle">Ploughing & Harrowing</span></div>
+<div style="padding:10px 11px;">
+  <div style="display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-bottom:3px;margin-bottom:9px;">${['All', 'Rotavator', 'Power Harrow', 'Disc Plough', 'Chisel Plough', 'Zero-Till'].map((x, i) => `<span style="white-space:nowrap;padding:4px 9px;border-radius:var(--pill);font-size:10px;font-weight:700;cursor:pointer;background:${i === 0 ? 'var(--g2)' : '#fff'};color:${i === 0 ? '#fff' : 'var(--ink3)'};border:1px solid ${i === 0 ? 'var(--g2)' : 'var(--border2)'};">${x}</span>`).join('')}</div>
+  ${[{ e: '🚜', n: 'Rotavator Ploughing', d: 'Deep soil mixing for paddy & wheat', p: 'Rs 1,200/hr', tags: ['Most popular'] }, { e: '⚙️', n: 'Power Harrow', d: 'Fine seedbed preparation', p: 'Rs 900/hr', tags: ['Gentle'] }, { e: '🔧', n: 'Disc Plough', d: 'Breaks hardpan & compacted soil', p: 'Rs 1,100/hr', tags: ['Deep cut'] }, { e: '🔩', n: 'Chisel Plough', d: 'Subsoil loosening', p: 'Rs 950/hr', tags: ['Conservation'] }, { e: '🌱', n: 'Zero-Till Seed Drill', d: 'Direct seeding without tillage', p: 'Rs 1,400/hr', tags: ['Modern'] }, { e: '✂️', n: 'Combine Harvesting', d: 'Harvest & thresh in one pass', p: 'Rs 2,200/hr', tags: ['Time saving'] }].map(s => `<div class="card" onclick="fgo(4)" style="display:flex;gap:9px;align-items:flex-start;"><div style="width:40px;height:40px;border-radius:11px;background:var(--g5);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">${s.e}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;margin-bottom:2px;">${s.n}</div><div style="font-size:10px;color:var(--ink3);margin-bottom:4px;">${s.d}</div><div style="display:flex;gap:3px;">${s.tags.map(x => `<span class="tag tg">${x}</span>`).join('')}</div></div><div style="text-align:right;flex-shrink:0;"><div style="font-size:12px;font-weight:800;color:var(--g2);">${s.p}</div></div></div>`).join('')}
+</div></div>`;
+
+    FS[4] = () => `<div class="fu" style="padding-bottom:56px;">
+<div class="nbar"><button class="nbk" onclick="fgo(3)"><i class="fa-solid fa-arrow-left"></i></button><span class="ntitle">Rotavator Providers</span><button class="nact"><i class="fa-solid fa-sliders"></i></button></div>
+<div style="padding:10px 11px;">
+  <div style="display:flex;gap:6px;margin-bottom:8px;"><div style="flex:1;background:#fff;border:1px solid var(--border2);border-radius:var(--rx);display:flex;align-items:center;padding:6px 9px;gap:4px;"><i class="fa-solid fa-location-dot" style="color:var(--g2);font-size:11px;"></i><span style="font-size:10.5px;">Dhulikhel, Kavrepalanchok</span></div><button style="background:var(--g5);border:1px solid var(--g4);border-radius:var(--rx);padding:6px 9px;font-size:10px;color:var(--g1);font-weight:700;cursor:pointer;">Change</button></div>
+  <div class="info ip" style="margin-bottom:8px;"><i class="fa-solid fa-wand-magic-sparkles"></i><div style="font-size:10px;"><b>AI:</b> High demand Tue–Wed. Book Shrestha Rentals now — only 1 slot left for Jun 17!</div></div>
+  ${[{ i: 'SR', n: 'Shrestha Rentals', t: 'Individual', d: '2.3 km', p: 'Rs 1,200/hr', ex: 'Rs 200', r: '4.8', rv: 47, tags: ['Tractor', 'Rotavator'], av: 'Today' }, { i: 'TK', n: 'Tamang Krishi Seva', t: 'Group', d: '5.1 km', p: 'Rs 950/hr', ex: 'Rs 150', r: '4.5', rv: 31, tags: ['Rotavator'], av: 'Tomorrow' }, { i: 'GF', n: 'Green Farm Co-op', t: 'Co-op', d: '8.4 km', p: 'Rs 1,100/hr', ex: 'Rs 300', r: '4.9', rv: 89, tags: ['Full package'], av: 'Today' }].map(p => `<div class="card" onclick="fgo(5)"><div style="display:flex;gap:8px;align-items:flex-start;"><div class="av" style="width:38px;height:38px;font-size:12px;">${p.i}</div><div style="flex:1;min-width:0;"><div style="display:flex;align-items:center;gap:3px;margin-bottom:1px;"><span style="font-size:12px;font-weight:700;">${p.n}</span><i class="fa-solid fa-circle-check" style="color:var(--g2);font-size:9px;"></i></div><div style="font-size:9px;color:var(--ink4);">${p.t}</div><div class="stars" style="font-size:9px;margin:2px 0;"><i class="fa-solid fa-star" style="font-size:9px;"></i> ${p.r} <span style="color:var(--ink3);">(${p.rv}) · ${p.d}</span></div><div style="display:flex;gap:3px;flex-wrap:wrap;">${p.tags.map(x => `<span class="tag tg">${x}</span>`).join('')}<span class="tag ta">${p.av}</span></div></div><div style="text-align:right;flex-shrink:0;"><div style="font-size:12px;font-weight:800;color:var(--g2);">${p.p}</div><div style="font-size:9px;color:var(--ink4);">+${p.ex}</div></div></div></div>`).join('')}
+</div></div>`;
+
+    FS[5] = () => `<div class="fu" style="padding-bottom:56px;">
+<div class="nbar"><button class="nbk" onclick="fgo(4)"><i class="fa-solid fa-arrow-left"></i></button><span class="ntitle">Shrestha Rentals</span><button class="nact"><i class="fa-solid fa-share-nodes"></i></button></div>
+<div style="background:linear-gradient(135deg,var(--g1),var(--g2));padding:11px;display:flex;gap:9px;align-items:center;"><div class="av" style="width:44px;height:44px;font-size:15px;background:rgba(255,255,255,.2);color:#fff;">SR</div><div style="flex:1;"><div style="display:flex;align-items:center;gap:3px;"><span style="font-size:14px;font-weight:800;color:#fff;">Shrestha Rentals</span><i class="fa-solid fa-circle-check" style="color:#A7F3D0;font-size:11px;"></i></div><div style="font-size:9px;color:rgba(255,255,255,.7);">Individual · Verified · Since 2020</div><div class="stars" style="color:#FCD34D;margin-top:2px;font-size:9px;">${'<i class="fa-solid fa-star" style="font-size:9px;"></i>'.repeat(4)}<i class="fa-solid fa-star-half-stroke" style="font-size:9px;"></i><span style="color:rgba(255,255,255,.75);"> 4.8 · 47 reviews · 2.3 km</span></div></div><div style="text-align:center;background:rgba(255,255,255,.15);border-radius:8px;padding:6px 9px;"><div style="font-size:15px;font-weight:800;color:#fff;">96%</div><div style="font-size:8px;color:rgba(255,255,255,.6);">Response</div></div></div>
+<div style="padding:11px;">
+  <div class="sh">AVAILABLE MACHINES</div>
+  ${[{ e: '🚜', n: 'Mahindra Rotavator 245', y: '2022', p: 'Rs 1,200/hr', s: 'Available' }, { e: '🚛', n: 'Sonalika Tractor DI 35', y: '2021', p: 'Rs 1,500/hr', s: 'Busy Jun 21' }].map(m => `<div style="background:#fff;border:1px solid var(--border2);border-radius:9px;padding:9px;margin-bottom:6px;display:flex;align-items:center;gap:8px;"><div style="width:38px;height:38px;border-radius:10px;background:var(--g5);display:flex;align-items:center;justify-content:center;font-size:20px;">${m.e}</div><div style="flex:1;"><div style="font-size:11px;font-weight:700;">${m.n}</div><div style="font-size:9.5px;color:var(--ink4);">Year: ${m.y}</div></div><div style="text-align:right;"><div style="font-size:11px;font-weight:800;color:var(--g2);">${m.p}</div><span class="tag ${m.s === 'Available' ? 'tg' : 'ta'}">${m.s}</span></div></div>`).join('')}
+  <div class="sh">REVIEWS</div>
+  ${[{ n: 'K.B. Shrestha', r: 5, t: 'Very professional, on time!', d: 'May 2026' }, { n: 'S. Tamang', r: 4, t: 'Good work, field leveled nicely.', d: 'Apr 2026' }].map(rv => `<div style="background:#fff;border:1px solid var(--border2);border-radius:9px;padding:9px;margin-bottom:6px;"><div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;"><div class="av" style="width:24px;height:24px;font-size:9px;">${rv.n[0]}</div><div style="flex:1;font-size:11px;font-weight:700;">${rv.n}</div><div class="stars" style="font-size:9px;">${'<i class="fa-solid fa-star" style="font-size:9px;"></i>'.repeat(rv.r)}</div><div style="font-size:9.5px;color:var(--ink4);">${rv.d}</div></div><div style="font-size:10.5px;color:var(--ink2);">"${rv.t}"</div></div>`).join('')}
+  <button class="bp" onclick="fgo(7)">Book This Service</button>
+</div></div>`;
+
+    FS[7] = () => {
+      const days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+      return `<div class="fu" style="padding-bottom:56px;">
+<div class="nbar"><button class="nbk" onclick="fgo(5)"><i class="fa-solid fa-arrow-left"></i></button><span class="ntitle">Select Date & Book</span></div>
+<div style="padding:10px 11px;">
+  <div class="steps"><div class="step"><div class="sc done"><i class="fa-solid fa-check" style="font-size:8px;"></i></div><div class="sl2">Provider</div></div><div class="step"><div class="sc act">2</div><div class="sl2">Date</div></div><div class="step"><div class="sc">3</div><div class="sl2">Confirm</div></div><div class="step"><div class="sc">4</div><div class="sl2">Payment</div></div></div>
+  <div class="info ip" style="margin-bottom:8px;"><i class="fa-solid fa-wand-magic-sparkles"></i><div style="font-size:10px;"><b>AI suggests:</b> Jun 17–18 (Tue–Wed) for best soil moisture. Rain expected Thu onward.</div></div>
+  <div style="background:#fff;border:1px solid var(--border2);border-radius:12px;padding:11px;margin-bottom:9px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
+      <div style="font-size:12px;font-weight:800;">June 2026</div>
+      <div style="display:flex;gap:3px;"><button style="background:var(--g5);border:none;border-radius:6px;width:24px;height:24px;cursor:pointer;color:var(--g1);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-chevron-left" style="font-size:9px;"></i></button><button style="background:var(--g5);border:none;border-radius:6px;width:24px;height:24px;cursor:pointer;color:var(--g1);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-chevron-right" style="font-size:9px;"></i></button></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:3px;">${days.map(d => `<div style="text-align:center;font-size:8px;font-weight:800;color:var(--ink4);padding:2px 0;">${d}</div>`).join('')}</div>
+    <div class="cal-grid">
+      ${[...Array(2)].map(() => '<div></div>').join('')}
+      ${Array.from({ length: 30 }, (_, i) => i + 1).map(d => {
+        const busy = BUSY.includes(String(d)), past = d < TODAY, sel = selDate === d, tod = d === TODAY;
+        let cls = 'cd '; if (past) cls += 'cpst'; else if (busy) cls += 'cbsy'; else if (sel) cls += 'csel'; else cls += 'cav' + (tod ? ' ctod' : '');
+        return `<div class="${cls}" onclick="${(!past && !busy) ? `setDate(${d})` : ''}"> ${d}${busy && !past ? '<div class="bz"></div>' : ''}</div>`;
+      }).join('')}
+    </div>
+  </div>
+  ${selDate ? `<div class="info ig" style="margin-bottom:9px;"><i class="fa-solid fa-calendar-check"></i><div>June ${selDate}, 2026 — <strong>Available with Shrestha Rentals ✓</strong></div></div>
+  <div class="sh">TIME SLOT</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:9px;">${['5:00 AM', '6:00 AM', '7:00 AM', '8:00 AM', '10:00 AM', '12:00 PM'].map(x => `<div onclick="this.parentElement.querySelectorAll('div').forEach(d=>d.style.cssText='');this.style.background='var(--g5)';this.style.borderColor='var(--g2)'" style="text-align:center;padding:6px;border-radius:8px;border:1px solid var(--border2);font-size:10px;font-weight:700;color:var(--ink2);cursor:pointer;background:#fff;">${x}</div>`).join('')}</div>
+  <button class="bp" onclick="fgo(8)">Continue to Confirm →</button>`: `<div class="info ia"><i class="fa-solid fa-calendar"></i><div>Tap a <strong>green date</strong>. Red = busy.</div></div><button class="bp" style="opacity:.45;pointer-events:none;">Select a date first</button>`}
+</div></div>`;
+    };
+    window.setDate = function (d) { selDate = d; renderFarmer(); };
+
+    FS[8] = () => `<div class="fu" style="padding-bottom:56px;">
+<div class="nbar"><button class="nbk" onclick="fgo(7)"><i class="fa-solid fa-arrow-left"></i></button><span class="ntitle">Confirm Booking</span></div>
+<div style="padding:10px 11px;">
+  <div class="steps"><div class="step"><div class="sc done"><i class="fa-solid fa-check" style="font-size:8px;"></i></div><div class="sl2">Provider</div></div><div class="step"><div class="sc done"><i class="fa-solid fa-check" style="font-size:8px;"></i></div><div class="sl2">Date</div></div><div class="step"><div class="sc act">3</div><div class="sl2">Confirm</div></div><div class="step"><div class="sc">4</div><div class="sl2">Payment</div></div></div>
+  <div class="info ia"><i class="fa-solid fa-circle-info"></i><div style="font-size:10.5px;">Request goes to owner first. <strong>Payment only after approval.</strong></div></div>
+  <div style="background:#fff;border:1px solid var(--border2);border-radius:12px;padding:11px;margin-bottom:9px;"><div class="sh" style="margin-top:0;">BOOKING SUMMARY</div>${[['Provider', 'Shrestha Rentals ✓'], ['Service', 'Mahindra Rotavator 245'], ['Date', `June ${selDate || 20}, 2026`], ['Time', '6:00 AM'], ['Duration', '4 hours'], ['Farm', 'Dhulikhel-5, Kavrepalanchok'], ['Area', '2.5 ropani']].map(([k, v]) => `<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border2);font-size:11px;"><span style="color:var(--ink3);">${k}</span><span style="font-weight:700;">${v}</span></div>`).join('')}<div style="margin-top:7px;background:var(--g5);border-radius:8px;padding:8px;"><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px;color:var(--ink2);"><span>Service 4hrs × Rs 1,200</span><span>Rs 4,800</span></div><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:2px;color:var(--ink2);"><span>Visit charge</span><span>Rs 200</span></div><div style="display:flex;justify-content:space-between;font-size:12px;font-weight:800;margin-top:4px;border-top:1px solid var(--g4);padding-top:4px;color:var(--g1);"><span>TOTAL</span><span>Rs 5,000</span></div></div></div>
+  <button class="bp" onclick="sendReq()"><i class="fa-solid fa-paper-plane" style="margin-right:5px;"></i>Send Request to Owner</button>
+</div></div>`;
+    window.sendReq = function () { farmerBk.unshift({ id: 'BK0' + Date.now(), svc: 'Rotavator Ploughing', prov: 'Shrestha Rentals', date: `Jun ${selDate || 20}`, amt: 5000, dep: 1500, status: 'pending_owner' }); provBk.unshift({ id: 'BK0' + Date.now(), farmer: 'Ram Bahadur Thapa', ph: '9841112233', svc: 'Rotavator · 4 hrs', loc: 'Dhulikhel-5', date: `Jun ${selDate || 20}, 6AM`, amt: 5000, dep: 1500, status: 'pending', veh: 'V001' }); fgo(11); };
+
+    FS[9] = () => `<div class="fu sw" style="padding-bottom:56px;">
+<div class="nbar"><button class="nbk" onclick="fgo(1)"><i class="fa-solid fa-arrow-left"></i></button><span class="ntitle">Notifications</span><button class="nact">Mark all read</button></div>
+<div style="padding:9px 11px;">
+  ${[{ i: 'fa-circle-check', c: 'var(--g2)', t: 'Booking Confirmed!', d: 'Shrestha Rentals confirmed Jun 20.', time: '2 min ago', u: true }, { i: 'fa-wand-magic-sparkles', c: 'var(--ai)', t: 'AI Alert: Rain incoming', d: 'Heavy rain Thu–Sat. Complete fieldwork by Wed.', time: '1 hr ago', u: true }, { i: 'fa-money-bill', c: 'var(--blue2)', t: 'Payment Received', d: 'Rs 1,500 deposit confirmed via eSewa.', time: '3 hrs ago', u: true }, { i: 'fa-star', c: 'var(--amber2)', t: 'Rate Your Service', d: 'How was the Rotavator on Jun 10?', time: 'Yesterday', u: false }].map(n => `<div style="background:${n.u ? 'var(--g5)' : '#fff'};border:1px solid ${n.u ? 'var(--g4)' : 'var(--border2)'};border-radius:9px;padding:9px;margin-bottom:6px;display:flex;gap:8px;cursor:pointer;"><div style="width:30px;height:30px;border-radius:50%;background:${n.c}20;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid ${n.i}" style="color:${n.c};font-size:13px;"></i></div><div style="flex:1;"><div style="font-size:11px;font-weight:700;margin-bottom:1px;">${n.t}</div><div style="font-size:10px;color:var(--ink3);">${n.d}</div><div style="font-size:9.5px;color:var(--ink4);margin-top:1px;">${n.time}</div></div>${n.u ? '<div style="width:6px;height:6px;border-radius:50%;background:var(--g2);flex-shrink:0;margin-top:2px;"></div>' : ''}</div>`).join('')}
+</div></div>`;
+
+    FS[10] = () => `<div class="fu" style="padding-bottom:56px;">
+<div class="nbar"><button class="nbk" onclick="fgo(1)"><i class="fa-solid fa-arrow-left"></i></button><span class="ntitle">My Bookings</span></div>
+<div style="padding:10px 11px;">
+  <div style="display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-bottom:9px;">${['All', 'Active', 'Confirmed', 'Completed', 'Cancelled'].map((x, i) => `<span style="white-space:nowrap;padding:4px 9px;border-radius:var(--pill);font-size:10px;font-weight:700;cursor:pointer;background:${i === 0 ? 'var(--g2)' : '#fff'};color:${i === 0 ? '#fff' : 'var(--ink3)'};border:1px solid ${i === 0 ? 'var(--g2)' : 'var(--border2)'};">${x}</span>`).join('')}</div>
+  ${farmerBk.map(b => `<div class="card" onclick="fgo(12)"><div style="display:flex;gap:8px;align-items:flex-start;"><div style="width:40px;height:40px;border-radius:10px;background:${b.status === 'confirmed' ? 'var(--g5)' : b.status === 'pending_owner' ? 'var(--amber-m)' : 'var(--blue-m)'};display:flex;align-items:center;justify-content:center;font-size:20px;">🚜</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;">${b.svc}</div><div style="font-size:10px;color:var(--ink3);">${b.prov} · ${b.date}</div><div style="margin-top:3px;"><span class="tag ${b.status === 'confirmed' ? 'tg' : b.status === 'pending_owner' ? 'ta' : 'tb'}">${b.status === 'confirmed' ? '✓ Confirmed' : b.status === 'pending_owner' ? '⏳ Awaiting Owner' : '⏳ Pending'}</span></div></div><div style="font-size:12px;font-weight:800;color:var(--g2);">Rs ${b.amt.toLocaleString()}</div></div></div>`).join('')}
+</div></div>`;
+
+    FS[11] = () => `<div class="fu sw" style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px 16px;text-align:center;">
+<div style="width:68px;height:68px;border-radius:50%;background:var(--g5);border:3px solid var(--g2);display:flex;align-items:center;justify-content:center;margin-bottom:11px;font-size:28px;">📤</div>
+<div style="font-size:18px;font-weight:800;margin-bottom:4px;">Request Sent!</div>
+<div style="font-size:11.5px;color:var(--ink3);margin-bottom:16px;line-height:1.6;">Sent to <strong>Shrestha Rentals</strong>. SMS will arrive when approved.</div>
+<div style="background:#fff;border:1px solid var(--border2);border-radius:12px;padding:11px;width:100%;margin-bottom:11px;text-align:left;">${[['Request ID', '#BK-2026-' + (Math.floor(Math.random() * 9000) + 1000)], ['Service', 'Rotavator Ploughing'], ['Date', `June ${selDate || 20}, 2026 · 6:00 AM`], ['Farm', 'Dhulikhel-5, Kavrepalanchok'], ['Total', 'Rs 5,000']].map(([k, v]) => `<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border2);font-size:11px;"><span style="color:var(--ink3);">${k}</span><span style="font-weight:700;">${v}</span></div>`).join('')}</div>
+<button class="bp" onclick="fgo(10)" style="width:100%;margin-bottom:6px;">View My Bookings</button>
+<button class="bo" onclick="fgo(1)" style="width:100%;">Back to Home</button>
+</div>`;
+
+    FS[12] = () => `<div class="fu" style="padding-bottom:56px;">
+<div class="nbar"><button class="nbk" onclick="fgo(10)"><i class="fa-solid fa-arrow-left"></i></button><span class="ntitle">Complete Payment</span></div>
+<div style="padding:10px 11px;">
+  <div class="steps">${['Provider', 'Date', 'Approved', 'Payment'].map((l, i) => `<div class="step"><div class="sc ${i < 3 ? 'done' : 'act'}">${i < 3 ? '<i class="fa-solid fa-check" style="font-size:8px;"></i>' : 4}</div><div class="sl2">${l}</div></div>`).join('')}</div>
+  <div class="info ig"><i class="fa-solid fa-circle-check"></i><div style="font-size:10.5px;"><strong>Owner approved!</strong> Pay deposit to confirm slot.</div></div>
+  <div style="background:#fff;border:1px solid var(--border2);border-radius:12px;padding:11px;margin-bottom:9px;">${[['Rotavator · 4 hrs', 'Rs 4,800'], ['Visit charge', 'Rs 200'], ['TOTAL', 'Rs 5,000'], ['Deposit now (30%)', 'Rs 1,500'], ['After service', 'Rs 3,500']].map(([k, v], i) => `<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:${i === 2 ? '2px solid var(--g2)' : '1px solid var(--border2)'};font-size:${i === 2 ? '12px' : '11px'};font-weight:${i >= 2 ? '800' : '400'};color:${i >= 2 ? 'var(--g1)' : 'var(--ink2)'};">${k}${v}</div>`).join('')}</div>
+  <div class="sh">PAY WITH</div>
+  ${[{ e: '💚', n: 'eSewa', s: 'Digital wallet', sel: true }, { e: '💜', n: 'Khalti', s: 'Digital wallet', sel: false }, { e: '🏦', n: 'ConnectIPS', s: 'Bank transfer', sel: false }, { e: '💵', n: 'Cash on delivery', s: 'Pay at farm', sel: false }].map(p => `<div class="po" style="border:${p.sel ? '1.5px solid var(--g2)' : '1px solid var(--border2)'};background:${p.sel ? 'var(--g5)' : '#fff'};margin-bottom:6px;cursor:pointer;"><div style="width:30px;height:30px;border-radius:8px;background:rgba(0,0,0,.05);display:flex;align-items:center;justify-content:center;font-size:16px;">${p.e}</div><div style="flex:1;"><div style="font-size:12px;font-weight:700;">${p.n}</div><div style="font-size:9.5px;color:var(--ink4);">${p.s}</div></div>${p.sel ? '<i class="fa-solid fa-circle-check" style="color:var(--g2);font-size:15px;"></i>' : ''}</div>`).join('')}
+  <button class="bp" onclick="fgo(13)" style="margin-top:6px;"><i class="fa-solid fa-lock" style="margin-right:4px;"></i>Pay Rs 1,500 & Confirm</button>
+</div></div>`;
+
+    FS[13] = () => `<div class="fu sw" style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px 16px;text-align:center;">
+<div style="width:68px;height:68px;border-radius:50%;background:var(--g5);border:3px solid var(--g2);display:flex;align-items:center;justify-content:center;margin-bottom:11px;font-size:28px;">✅</div>
+<div style="font-size:18px;font-weight:800;margin-bottom:3px;">Booking Confirmed!</div>
+<div style="font-size:11.5px;color:var(--ink3);margin-bottom:16px;line-height:1.6;">Shrestha Rentals arrives <strong>June ${selDate || 20}</strong> at <strong>6:00 AM</strong>. SMS sent.</div>
+<div style="background:#fff;border:1px solid var(--border2);border-radius:12px;padding:11px;width:100%;margin-bottom:11px;text-align:left;">${[['Booking ID', '#AR-2026-0847'], ['Service', 'Rotavator Ploughing'], ['Date', `June ${selDate || 20} · 6:00 AM`], ['Driver', 'Bishnu Tamang · 9841234567'], ['Deposit', 'Rs 1,500 via eSewa ✓']].map(([k, v]) => `<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border2);font-size:11px;"><span style="color:var(--ink3);">${k}</span><span style="font-weight:700;">${v}</span></div>`).join('')}</div>
+<button class="bp" onclick="fgo(1)" style="width:100%;margin-bottom:6px;">Back to Home</button>
+<button class="bo" onclick="fgo(10)" style="width:100%;">View All Bookings</button>
+</div>`;
+
+    // ─── PROVIDER SCREENS ───────────────────
+    let pIdx = 0; const PS = [];
+    PS[0] = () => `<div class="fu sw" style="height:100%;display:flex;flex-direction:column;background:linear-gradient(160deg,#1E3A5F,#1D4ED8 55%,#3B82F6);">
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px 16px;text-align:center;">
+  <div style="width:66px;height:66px;background:rgba(255,255,255,.15);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:11px;">🏢</div>
+  <div style="font-size:21px;font-weight:800;color:#fff;">Service Provider</div>
+  <div style="font-size:11px;color:rgba(255,255,255,.6);margin:3px 0 20px;">सेवा प्रदायक पोर्टल</div>
+  <div style="width:100%;display:flex;flex-direction:column;gap:8px;">
+    <input class="fin" placeholder="98XXXXXXXX" style="background:rgba(255,255,255,.9);">
+    <input class="fin" type="password" placeholder="••••••••" style="background:rgba(255,255,255,.9);">
+    <button class="bp" style="background:rgba(255,255,255,1);color:#1D4ED8;" onclick="pgo(1)">Login as Provider</button>
+    <button class="bo" style="border-color:rgba(255,255,255,.5);color:#fff;" onclick="pgo(1)">Register</button>
+    <button style="background:none;border:none;color:rgba(255,255,255,.45);font-size:11px;cursor:pointer;" onclick="fgo(0)">← Back</button>
+  </div>
+</div></div>`;
+
+    PS[1] = () => {
+      const pend = provBk.filter(b => b.status === 'pending').length; return `<div class="fu" style="padding-bottom:56px;">
+<div style="background:linear-gradient(135deg,#1E3A5F,#1D4ED8);padding:11px 11px 17px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;">
+    <div><div style="font-size:9px;color:rgba(255,255,255,.6);">Owner Portal</div><div style="font-size:14px;font-weight:800;color:#fff;">Shrestha Rentals</div><div style="font-size:9px;color:rgba(255,255,255,.5);">📍 Dhulikhel, Kavrepalanchok</div></div>
+    <div style="display:flex;gap:5px;align-items:center;"><div style="position:relative;cursor:pointer;" onclick="pgo(3)"><div style="width:28px;height:28px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;"><i class="fa-solid fa-bell"></i></div>${pend ? `<span class="nbadge">${pend}</span>` : ''}</div><div class="av" style="width:29px;height:29px;font-size:12px;background:rgba(255,255,255,.2);color:#fff;">SR</div></div>
+  </div>
+</div>
+<div style="background:var(--bg);border-radius:16px 16px 0 0;margin-top:-8px;padding:11px;">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:11px;">
+    ${[{ v: VEH.length, l: 'Machines', c: 'var(--blue2)', bg: 'var(--blue-m)' }, { v: pend, l: 'Requests', c: 'var(--amber)', bg: 'var(--amber-m)' }, { v: '18.4k', l: 'Revenue', c: 'var(--g2)', bg: 'var(--g5)' }, { v: '4.8⭐', l: 'Rating', c: 'var(--purple)', bg: 'var(--purple-l)' }].map(s => `<div class="stat" style="background:${s.bg};border:1px solid rgba(0,0,0,.04);"><div class="sv" style="color:${s.c};font-size:14px;">${s.v}</div><div class="sl" style="font-size:8.5px;">${s.l}</div></div>`).join('')}
+  </div>
+  <div class="info ip" style="margin-bottom:9px;"><i class="fa-solid fa-wand-magic-sparkles"></i><div style="font-size:10px;"><b>AI:</b> Peak demand Tue–Wed. Rs 28,800 revenue window. Deploy all 3 vehicles!</div></div>
+  ${pend ? `<div class="sh"><i class="fa-solid fa-clock" style="color:var(--amber);margin-right:3px;"></i>PENDING (${pend})</div>${provBk.filter(b => b.status === 'pending').slice(0, 2).map(b => `<div class="card" style="border-left:3px solid var(--amber);"><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><div style="font-size:12px;font-weight:700;">${b.farmer}</div><div style="font-size:12px;font-weight:800;color:var(--g2);">Rs ${b.amt.toLocaleString()}</div></div><div style="font-size:10px;color:var(--ink3);margin-bottom:2px;"><i class="fa-solid fa-location-dot" style="color:var(--red);margin-right:2px;"></i>${b.loc} · ${b.date}</div><div style="font-size:10px;color:var(--ink3);margin-bottom:6px;"><i class="fa-solid fa-tractor" style="color:var(--g2);margin-right:2px;"></i>${b.svc}</div><div style="display:flex;gap:4px;"><button class="sm smg" onclick="appBk('${b.id}')">✓ Approve</button><button class="sm smr" onclick="decBk('${b.id}')">✗ Decline</button></div></div>`).join('')}` : ''}
+  <div class="sh"><i class="fa-solid fa-satellite" style="color:var(--g2);margin-right:3px;"></i>GPS FLEET</div>
+  ${VEH.map(v => `<div class="card" onclick="pgo(2)" style="display:flex;gap:8px;align-items:center;padding:9px;"><div class="mimg" style="width:38px;height:38px;font-size:20px;">🚜</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${v.name}</div><div style="font-size:9.5px;color:var(--ink3);">${v.driver}</div><div style="display:flex;align-items:center;gap:3px;margin-top:2px;"><div class="gpsd ${v.status === 'running' ? 'gon' : v.status === 'idle' ? 'gidle' : 'goff'}"></div><span style="font-size:9.5px;font-weight:700;color:${v.status === 'running' ? '#16A34A' : v.status === 'idle' ? '#D97706' : 'var(--red)'};">${v.status}</span></div></div><div style="text-align:right;"><div style="font-size:9.5px;color:var(--ink4);">⛽${v.fuel}%</div></div></div>`).join('')}
+</div></div>`;
+    };
+    window.appBk = function (id) { const b = provBk.find(x => x.id === id); if (b) b.status = 'approved'; const fb = farmerBk.find(x => x.id === id); if (fb) fb.status = 'confirmed'; renderAll(); };
+    window.decBk = function (id) { const b = provBk.find(x => x.id === id); if (b) b.status = 'declined'; renderAll(); };
+
+    PS[2] = () => `<div class="fu" style="padding-bottom:56px;">
+<div class="nbar"><button class="nbk" onclick="pgo(1)"><i class="fa-solid fa-arrow-left"></i></button><span class="ntitle">GPS Fleet Monitor</span><button class="nact">Excel</button></div>
+<div style="padding:10px 11px;">
+  <div class="gmap" style="height:150px;margin-bottom:9px;">
+    <div style="position:absolute;top:58%;left:0;right:0;height:8px;background:rgba(255,255,255,.55);border-radius:3px;transform:rotate(-2deg);"></div>
+    <div style="position:absolute;top:5px;left:7px;font-size:8.5px;font-weight:800;color:var(--g1);">🗺 Live Map — Dhulikhel</div>
+    <div style="position:absolute;top:5px;right:7px;background:rgba(255,255,255,.85);border-radius:5px;padding:2px 5px;font-size:8px;font-weight:800;color:var(--red);">● LIVE</div>
+    <div class="gv" style="background:linear-gradient(135deg,var(--g1),var(--g2));top:26%;left:22%;">🚜</div>
+    <div class="gv" style="background:var(--amber);top:40%;left:57%;font-size:10px;"><i class="fa-solid fa-tractor" style="color:#fff;"></i></div>
+    <div class="gv" style="background:var(--red);top:53%;left:34%;font-size:10px;"><i class="fa-solid fa-wrench" style="color:#fff;"></i></div>
+  </div>
+  <div class="sh">VEHICLE STATUS</div>
+  ${VEH.map(v => `<div class="card"><div style="display:flex;gap:8px;align-items:flex-start;"><div class="mimg" style="width:40px;height:40px;border-radius:10px;font-size:20px;background:${v.status === 'running' ? '#F0FDF4' : v.status === 'idle' ? '#FFFBEB' : '#FEF2F2'};">🚜</div><div style="flex:1;"><div style="display:flex;align-items:center;gap:3px;margin-bottom:2px;"><span style="font-size:11px;font-weight:700;">${v.name}</span><div class="gpsd ${v.status === 'running' ? 'gon' : v.status === 'idle' ? 'gidle' : 'goff'}"></div></div><div style="font-size:10px;color:var(--ink3);">Driver: ${v.driver}</div><div style="display:flex;gap:3px;margin-top:3px;flex-wrap:wrap;"><span class="tag ${v.status === 'running' ? 'tg' : v.status === 'idle' ? 'ta' : 'tr'}">● ${v.status}</span><span class="tag">⛽ ${v.fuel}%</span>${v.status === 'running' ? `<span class="tag tg">🌾 ${v.area} ropani</span>` : ''}</div></div></div></div>`).join('')}
+</div></div>`;
+
+    PS[3] = () => `<div class="fu" style="padding-bottom:56px;">
+<div class="nbar"><button class="nbk" onclick="pgo(1)"><i class="fa-solid fa-arrow-left"></i></button><span class="ntitle">Booking Requests</span></div>
+<div style="padding:10px 11px;">
+  ${provBk.map(b => `<div class="card" style="border-left:3px solid ${b.status === 'pending' ? 'var(--amber)' : b.status === 'approved' ? 'var(--g2)' : '#22C55E'};"><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><div><div style="font-size:12px;font-weight:700;">${b.farmer}</div><div style="font-size:9.5px;color:var(--ink4);">📞 ${b.ph} · ${b.id}</div></div><div style="text-align:right;"><div style="font-size:12px;font-weight:800;color:var(--g2);">Rs ${b.amt.toLocaleString()}</div><span class="tag ${b.status === 'pending' ? 'ta' : b.status === 'approved' ? 'tg' : 'tg'}">${b.status === 'pending' ? 'Pending' : b.status === 'approved' ? 'Approved' : 'Completed'}</span></div></div><div style="font-size:10px;color:var(--ink3);margin-bottom:2px;"><i class="fa-solid fa-location-dot" style="color:var(--red);margin-right:2px;"></i>${b.loc} · ${b.date}</div><div style="font-size:10px;color:var(--ink3);margin-bottom:5px;"><i class="fa-solid fa-tractor" style="color:var(--g2);margin-right:2px;"></i>${b.svc}</div>${b.status === 'pending' ? `<div style="display:flex;gap:4px;"><button class="sm smg" onclick="appBk('${b.id}');pgo(3)">✓ Approve</button><button class="sm smr" onclick="decBk('${b.id}');pgo(3)">✗ Decline</button></div>` : ''}</div>`).join('')}
+</div></div>`;
+
+    PS[4] = () => `<div class="fu" style="padding-bottom:56px;">
+<div class="nbar"><button class="nbk" onclick="pgo(1)"><i class="fa-solid fa-arrow-left"></i></button><span class="ntitle">Drivers / Operators</span><button class="nact">+ Add</button></div>
+<div style="padding:10px 11px;">
+  ${DRIVERS.map(d => `<div class="card"><div style="display:flex;gap:8px;align-items:flex-start;"><div class="av" style="width:40px;height:40px;font-size:13px;">${d.name.split(' ').map(n => n[0]).join('')}</div><div style="flex:1;"><div style="display:flex;align-items:center;gap:3px;margin-bottom:2px;"><span style="font-size:12px;font-weight:700;">${d.name}</span>${d.status === 'active' ? '<i class="fa-solid fa-circle-check" style="color:var(--g2);font-size:9px;"></i>' : ''}</div><div style="font-size:10px;color:var(--ink3);">📞 ${d.ph} · 🚜 ${d.veh}</div><div style="font-size:10px;color:var(--ink3);">✅ Done: ${d.done} · Today: ${d.today}</div><div style="margin-top:4px;"><span class="tag ${d.status === 'active' ? 'tg' : 'ta'}">${d.status}</span></div></div>${d.status === 'pending' ? `<button class="sm smg" onclick="vDrv('${d.id}')">Verify</button>` : ''}</div></div>`).join('')}
+</div></div>`;
+    window.vDrv = function (id) { const d = DRIVERS.find(x => x.id === id); if (d) d.status = 'active'; renderProvider(); };
+
+    PS[5] = () => `<div class="fu" style="padding-bottom:56px;">
+<div class="nbar"><span class="ntitle">Analytics & Records</span><button class="nact" onclick="pgo(6)">Export</button></div>
+<div style="padding:10px 11px;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:9px;">${[{ v: 'Rs 18,400', l: 'Revenue', c: 'var(--g2)', bg: 'var(--g5)' }, { v: '12', l: 'Bookings', c: 'var(--blue2)', bg: 'var(--blue-m)' }, { v: '64 hrs', l: 'Uptime', c: 'var(--purple)', bg: 'var(--purple-l)' }, { v: '4.8 ⭐', l: 'Avg Rating', c: 'var(--amber)', bg: 'var(--amber-m)' }].map(s => `<div class="stat" style="background:${s.bg};border:1px solid rgba(0,0,0,.04);"><div class="sv" style="color:${s.c};">${s.v}</div><div class="sl">${s.l}</div></div>`).join('')}</div>
+  <div style="background:#fff;border:1px solid var(--border2);border-radius:12px;padding:11px;margin-bottom:9px;">
+    <div style="font-size:10px;font-weight:700;color:var(--ink2);margin-bottom:7px;">Daily Revenue (Rs)</div>
+    <div style="display:flex;align-items:flex-end;gap:4px;height:70px;">${[{ d: 'Mo', h: 45 }, { d: 'Tu', h: 65 }, { d: 'We', h: 30 }, { d: 'Th', h: 85 }, { d: 'Fr', h: 100 }, { d: 'Sa', h: 55 }, { d: 'Su', h: 70 }].map((b, i) => `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;"><div style="flex:1;width:100%;display:flex;align-items:flex-end;"><div style="width:100%;height:${b.h}%;background:${i === 4 ? 'var(--g2)' : 'rgba(5,150,105,.3)'};border-radius:3px 3px 0 0;"></div></div><span style="font-size:8px;color:${i === 4 ? 'var(--g2)' : 'var(--ink4)'};font-weight:${i === 4 ? '800' : '500'};">${b.d}</span></div>`).join('')}</div>
+  </div>
+  <div style="background:linear-gradient(135deg,#1E3A5F,#2563EB);border-radius:12px;padding:13px;text-align:center;color:#fff;"><i class="fa-solid fa-crown" style="font-size:20px;margin-bottom:6px;display:block;color:#FCD34D;"></i><div style="font-size:12px;font-weight:800;margin-bottom:2px;">Free Plan — 7 days limit</div><div style="font-size:10px;opacity:.8;margin-bottom:7px;">Upgrade for unlimited data + AI Premium</div><button style="background:#fff;color:#1D4ED8;border:none;border-radius:8px;padding:7px 16px;font-size:12px;font-weight:800;cursor:pointer;">Upgrade — Rs 399/month</button></div>
+</div></div>`;
+
+    PS[6] = () => `<div class="fu" style="padding-bottom:56px;">
+<div class="nbar"><button class="nbk" onclick="pgo(5)"><i class="fa-solid fa-arrow-left"></i></button><span class="ntitle">Export Data</span></div>
+<div style="padding:10px 11px;">
+  <div class="info ig"><i class="fa-solid fa-file-excel"></i><div style="font-size:10.5px;">Download records as <strong>Excel (.xlsx)</strong></div></div>
+  ${[{ i: 'fa-receipt', n: 'Booking Records', d: 'All bookings, dates, amounts, status', r: '12 rows', lk: false }, { i: 'fa-satellite', n: 'GPS Area Report', d: 'Cultivated area per machine per day', r: '28 measurements', lk: false }, { i: 'fa-coins', n: 'Revenue Summary', d: 'Income by machine, deposits, pending', r: 'Summary sheet', lk: false }, { i: 'fa-users', n: 'Driver Activity Log', d: 'Hours, trips, locations per driver', r: '18 entries', lk: false }, { i: 'fa-calendar-days', n: 'Full History (30+ days)', d: 'Unlimited historical data', r: 'Premium only', lk: true }].map(r => `<div style="background:#fff;border:1px solid var(--border2);border-radius:9px;padding:9px;margin-bottom:6px;display:flex;gap:8px;align-items:center;${r.lk ? 'opacity:.55;' : 'cursor:pointer;'}"><div style="width:34px;height:34px;border-radius:8px;background:${r.lk ? '#F9FAFB' : 'var(--g5)'};display:flex;align-items:center;justify-content:center;color:${r.lk ? 'var(--ink4)' : 'var(--g2)'};font-size:15px;flex-shrink:0;"><i class="fa-solid ${r.i}"></i></div><div style="flex:1;"><div style="font-size:11px;font-weight:700;">${r.n}</div><div style="font-size:9.5px;color:var(--ink3);">${r.r}</div></div>${r.lk ? `<span class="tag tp">Premium</span>` : `<button class="sm smg">Excel</button>`}</div>`).join('')}
+</div></div>`;
+
+    // ─── OPERATOR SCREENS ───────────────────
+    let oIdx = 0; const OS = [];
+    OS[0] = () => `<div class="fu sw" style="height:100%;display:flex;flex-direction:column;background:linear-gradient(160deg,#451A03,#D97706 55%,#FCD34D);">
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px 16px;text-align:center;">
+  <div style="width:62px;height:62px;background:rgba(255,255,255,.15);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:11px;">👨‍🔧</div>
+  <div style="font-size:20px;font-weight:800;color:#fff;">Operator Login</div>
+  <div style="font-size:11px;color:rgba(255,255,255,.6);margin:3px 0 18px;">अपरेटर / चालक पोर्टल</div>
+  <div style="width:100%;display:flex;flex-direction:column;gap:8px;">
+    <input class="fin" placeholder="Mobile: 98XXXXXXXX" style="background:rgba(255,255,255,.9);">
+    <input class="fin" placeholder="Owner ID: SR-2026-001" style="background:rgba(255,255,255,.9);">
+    <button class="ba" onclick="ogo(1)">Login as Operator</button>
+    <button style="background:none;border:none;color:rgba(255,255,255,.45);font-size:11px;cursor:pointer;" onclick="fgo(0)">← Back</button>
+  </div>
+</div></div>`;
+
+    OS[1] = () => `<div class="fu" style="padding-bottom:56px;">
+<div style="background:linear-gradient(135deg,#451A03,#D97706);padding:11px 11px 17px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;">
+    <div><div style="font-size:9px;color:rgba(255,255,255,.6);">Operator Portal</div><div style="font-size:14px;font-weight:800;color:#fff;">Bishnu Tamang</div><div style="font-size:9px;color:rgba(255,255,255,.5);">🚜 Mahindra Rotavator 245</div></div>
+    <div style="text-align:center;background:rgba(255,255,255,.15);border-radius:8px;padding:6px 9px;"><div style="font-size:15px;font-weight:800;color:#fff;">28</div><div style="font-size:8px;color:rgba(255,255,255,.6);">Jobs Done</div></div>
+  </div>
+</div>
+<div style="background:var(--bg);border-radius:16px 16px 0 0;margin-top:-8px;padding:11px;">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:11px;">${[{ v: 2, l: "Today's Jobs", c: 'var(--amber)', bg: 'var(--amber-m)' }, { v: 3, l: 'Upcoming', c: 'var(--blue2)', bg: 'var(--blue-m)' }, { v: 28, l: 'Completed', c: 'var(--g2)', bg: 'var(--g5)' }].map(s => `<div class="stat" style="background:${s.bg};"><div class="sv" style="color:${s.c};">${s.v}</div><div class="sl">${s.l}</div></div>`).join('')}</div>
+  <div class="sh"><i class="fa-solid fa-sun" style="color:var(--amber);margin-right:3px;"></i>TODAY'S JOBS</div>
+  ${[{ f: 'Ram Bahadur Thapa', ph: '9841112233', loc: 'Dhulikhel-5, Kavrepalanchok', svc: 'Rotavator Ploughing · 4 hrs', time: '6:00 AM', status: 'In Progress', area: 1.4 }, { f: 'Hari Prasad Khadka', ph: '9811112233', loc: 'Nala, Kavrepalanchok', svc: 'Rotavator Ploughing · 6 hrs', time: '12:00 PM', status: 'Scheduled', area: 0 }].map(j => `<div class="jcard" style="border-color:${j.status === 'In Progress' ? 'var(--g2)' : 'var(--amber)'};">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;"><div><div style="font-size:12px;font-weight:700;">${j.f}</div><div style="font-size:9.5px;color:var(--ink3);">📞 ${j.ph}</div></div><span class="tag ${j.status === 'In Progress' ? 'tg' : 'ta'}">${j.status}</span></div>
+    <div style="font-size:10px;color:var(--ink3);margin-bottom:2px;"><i class="fa-solid fa-location-dot" style="color:var(--red);margin-right:2px;"></i>${j.loc}</div>
+    <div style="font-size:10px;color:var(--ink3);margin-bottom:2px;"><i class="fa-solid fa-tractor" style="color:var(--g2);margin-right:2px;"></i>${j.svc}</div>
+    <div style="font-size:10px;color:var(--ink3);margin-bottom:7px;"><i class="fa-solid fa-clock" style="color:var(--blue2);margin-right:2px;"></i>${j.time}</div>
+    <div style="display:flex;gap:4px;flex-wrap:wrap;">${j.status === 'In Progress' ? `<button class="sm" style="background:var(--red);color:#fff;" onclick="ogo(3)">🏁 End Job</button><button class="sm smb" onclick="ogo(2)">Navigate</button>` : `<button class="sm smg" onclick="ogo(2)">▶ Start Job</button><button class="sm smb" onclick="ogo(2)">Navigate</button>`}</div>
+  </div>`).join('')}
+</div></div>`;
+
+    OS[2] = () => `<div class="fu" style="padding-bottom:56px;">
+<div class="nbar"><button class="nbk" onclick="ogo(1)"><i class="fa-solid fa-arrow-left"></i></button><span class="ntitle">Job Navigation</span></div>
+<div style="padding:10px 11px;">
+  <div style="background:#fff;border:1px solid var(--border2);border-radius:12px;padding:11px;margin-bottom:9px;"><div class="sh" style="margin-top:0;">JOB DETAILS</div>${[['Farmer', 'Ram Bahadur Thapa'], ['Phone', '📞 9841112233'], ['Service', 'Rotavator Ploughing · 4 hrs'], ['Machine', 'Mahindra Rotavator 245'], ['Date', 'June 20, 2026 · 6:00 AM'], ['Location', 'Dhulikhel-5, Kavrepalanchok'], ['Payment', 'eSewa (Paid)'], ['Status', 'In Progress']].map(([k, v]) => `<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border2);font-size:11px;"><span style="color:var(--ink3);">${k}</span><span style="font-weight:700;">${v}</span></div>`).join('')}</div>
+  <div class="gmap" style="height:125px;margin-bottom:9px;">
+    <div style="position:absolute;top:5px;left:7px;font-size:8.5px;font-weight:800;color:var(--g1);">📍 Dhulikhel-5, Kavrepalanchok</div>
+    <div class="gv" style="background:linear-gradient(135deg,var(--amber),#FCD34D);top:35%;left:44%;">🚜</div>
+  </div>
+  <div style="display:flex;gap:6px;margin-bottom:9px;"><button class="bb" style="flex:1;" onclick="alert('Opening Google Maps...')"><i class="fa-solid fa-map-location-dot" style="margin-right:4px;"></i>Navigate via Maps</button><button style="width:38px;height:38px;background:var(--amber-m);border:1px solid #FDE68A;border-radius:var(--rx);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;" onclick="alert('Calling farmer...')">📞</button></div>
+  <button class="ba" onclick="ogo(3)"><i class="fa-solid fa-flag-checkered" style="margin-right:4px;"></i>End Job & Submit</button>
+</div></div>`;
+
+    OS[3] = () => `<div class="fu sw" style="padding-bottom:56px;">
+<div class="nbar"><button class="nbk" onclick="ogo(2)"><i class="fa-solid fa-arrow-left"></i></button><span class="ntitle">Complete Job</span></div>
+<div style="padding:10px 11px;">
+  <div style="background:#fff;border:1px solid var(--border2);border-radius:12px;padding:11px;margin-bottom:9px;"><div class="sh" style="margin-top:0;">JOB SUMMARY</div>${[['Farmer', 'Ram Bahadur Thapa'], ['Service', 'Rotavator Ploughing'], ['Duration', '4 hrs (6:00 AM – 10:00 AM)'], ['GPS Area', '2.5 ropani (auto-calculated)'], ['Location', 'Dhulikhel-5, Kavrepalanchok']].map(([k, v]) => `<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border2);font-size:11px;"><span style="color:var(--ink3);">${k}</span><span style="font-weight:700;">${v}</span></div>`).join('')}</div>
+  <div style="background:var(--bg);border:2px dashed var(--border2);border-radius:12px;padding:20px;text-align:center;margin-bottom:9px;cursor:pointer;"><i class="fa-solid fa-camera" style="font-size:22px;color:var(--ink4);display:block;margin-bottom:6px;"></i><div style="font-size:11px;font-weight:700;color:var(--ink3);">Take Completion Photo</div></div>
+  <div style="background:#fff;border:1px solid var(--border2);border-radius:9px;padding:9px;margin-bottom:9px;display:flex;gap:8px;align-items:center;"><i class="fa-solid fa-money-bill-wave" style="color:var(--g2);font-size:18px;"></i><div style="flex:1;"><div style="font-size:11px;font-weight:700;">Deposit Rs 1,500 ✓ Received</div><div style="font-size:10px;color:var(--ink3);">Balance Rs 3,500 — collect from farmer</div></div><span class="tag ta">Partial</span></div>
+  <button class="ba" onclick="jobDone()"><i class="fa-solid fa-circle-check" style="margin-right:4px;"></i>Submit & Mark Complete</button>
+</div></div>`;
+    window.jobDone = function () { alert('✅ Job marked complete!\n\nFarmer gets SMS receipt.\nOwner gets GPS area report.'); ogo(1); };
+
+    // ─── NAV CONFIGS ────────────────────────
+    const FN = [{ i: 'fa-house', l: () => t('home'), s: 1 }, { i: 'fa-magnifying-glass', l: () => t('search'), s: 2 }, { i: 'fa-calendar-check', l: () => t('bookings'), s: 10 }, { i: 'fa-bell', l: () => t('alerts'), s: 9 }, { i: 'fa-user', l: () => t('profile'), s: 1 }];
+    const PN = [{ i: 'fa-chart-pie', l: () => t('dashboard'), s: 1 }, { i: 'fa-satellite', l: () => t('fleet'), s: 2 }, { i: 'fa-list-check', l: () => t('orders'), s: 3 }, { i: 'fa-users', l: () => t('drivers'), s: 4 }, { i: 'fa-chart-bar', l: () => t('analytics'), s: 5 }];
+    const ON = [{ i: 'fa-house', l: () => t('jobs'), s: 1 }, { i: 'fa-location-crosshairs', l: () => t('nav'), s: 2 }, { i: 'fa-flag-checkered', l: () => t('done'), s: 3 }];
+    const FSN = [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13];
+    const PSN = [1, 2, 3, 4, 5, 6];
+    const OSN = [1, 2, 3];
+
+    function getScreen() {
+      if (mod === 'f') return (FS[fIdx] || FS[1])();
+      if (mod === 'p') return (PS[pIdx] || PS[1])();
+      if (mod === 'o') return (OS[oIdx] || OS[1])();
+    }
+    function getNav() {
+      const pend = provBk.filter(b => b.status === 'pending').length;
+      if (mod === 'f') { const show = FSN.includes(fIdx); if (!show) return ''; return `<div class="bnav">${FN.map(n => { const has = n.s === 9; return `<button class="bni ${fIdx === n.s ? 'on' : ''}" onclick="fgo(${n.s})"><i class="fa-solid ${n.i}"></i>${has ? '<div class="nd"></div>' : ''}<span>${typeof n.l === 'function' ? n.l() : n.l}</span></button>`; }).join('')}</div>`; }
+      if (mod === 'p') { const show = PSN.includes(pIdx); if (!show) return ''; return `<div class="bnav">${PN.map(n => { const has = n.s === 3 && pend > 0; return `<button class="bni ${pIdx === n.s ? 'on' : ''}" onclick="pgo(${n.s})"><i class="fa-solid ${n.i}"></i>${has ? '<div class="nd"></div>' : ''}<span>${typeof n.l === 'function' ? n.l() : n.l}</span></button>`; }).join('')}</div>`; }
+      if (mod === 'o') { const show = OSN.includes(oIdx); if (!show) return ''; return `<div class="bnav">${ON.map(n => `<button class="bni ${oIdx === n.s ? 'on' : ''}" onclick="ogo(${n.s})"><i class="fa-solid ${n.i}"></i><span>${typeof n.l === 'function' ? n.l() : n.l}</span></button>`).join('')}</div>`; }
+      return '';
+    }
+    function getDots() {
+      if (mod === 'f') return FSN.map(i => `<div class="dot ${i === fIdx ? 'on' : ''}" onclick="fgo(${i})"></div>`).join('');
+      if (mod === 'p') return PSN.map(i => `<div class="dot ${i === pIdx ? 'on' : ''}" onclick="pgo(${i})"></div>`).join('');
+      if (mod === 'o') return OSN.map(i => `<div class="dot ${i === oIdx ? 'on' : ''}" onclick="ogo(${i})"></div>`).join('');
+      return '';
+    }
+    function renderFarmer() { render(); }
+    function renderProvider() { render(); }
+    function renderAll() { render(); }
+    function render() {
+      const sc = document.getElementById('fs'); if (sc) { sc.innerHTML = getScreen(); sc.scrollTop = 0; }
+      const fb = document.getElementById('fb'); if (fb) fb.innerHTML = getNav();
+      const fd = document.getElementById('fd'); if (fd) fd.innerHTML = getDots();
+    }
+    window.fgo = function (n) { mod = 'f'; fIdx = n; render(); };
+    window.pgo = function (n) { mod = 'p'; pIdx = n; render(); };
+    window.ogo = function (n) { mod = 'o'; oIdx = n; render(); };
+    function switchRole(r) { if (r === 'f') { fgo(1); } else if (r === 'p') { pgo(1); } else { ogo(1); } document.querySelectorAll('.role-btn').forEach((b, i) => { b.classList.toggle('on', ['f', 'p', 'o'][i] === r); }); }
+    render();
+
+    // ─── AI LOCATION ────────────────────────
+    let aiLocation = 'Dhulikhel, Kavrepalanchok';
+    window.setLoc = function (el, loc) {
+      document.querySelectorAll('.loc-btn').forEach(b => b.classList.remove('sel'));
+      el.classList.add('sel');
+      aiLocation = loc;
+      document.getElementById('ai-loc-display').innerHTML = `<i class="fa-solid fa-map-pin" style="color:var(--ai3);margin-right:4px;"></i>Selected: <b style="color:#fff;">${loc}</b>`;
+    };
+
+    // ─── AI CALLS ───────────────────────────
+    async function callAI(prompt) {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-6',
+          max_tokens: 1000,
+          messages: [{ role: 'user', content: prompt }]
+        })
+      });
+      const d = await res.json();
+      return d.content?.map(i => i.text || '').join('') || 'No response';
+    }
+
+    window.runClimateAI = async function () {
+      const el = document.getElementById('climate-ai-result');
+      el.style.display = 'block';
+      el.innerHTML = `<div class="ai-loading"><div class="spinner"></div>Analyzing climate patterns for ${aiLocation}...</div>`;
+      try {
+        const text = await callAI(`You are an AI agricultural advisor for Nepal. For the location "${aiLocation}", based on typical June monsoon patterns, provide a very concise 3-bullet agricultural advisory (each bullet under 20 words). Format:
+• [timing advice]
+• [crop advice]  
+• [equipment advice]
+Be specific, practical, Nepal-focused. No intro text.`);
+        el.innerHTML = `<div class="ai-response"><b>🌾 AI Climate Advisory · ${aiLocation}</b><br><br>${text.replace(/\n/g, '<br>').replace(/•/g, '<b style="color:var(--ai3);">•</b>')}</div>`;
+      } catch (e) { el.innerHTML = `<div class="ai-response">⚠️ Enable API key to use AI features. Demo: Schedule ploughing Tue–Wed. Expect 60–85% rain probability Thu–Sat.</div>`; }
+    };
+
+    window.runHealthAI = async function () {
+      const el = document.getElementById('health-ai-result');
+      el.style.display = 'block';
+      el.innerHTML = `<div class="ai-loading"><div class="spinner"></div>Generating maintenance schedule...</div>`;
+      try {
+        const vehData = VEH.map(v => `${v.name}: health ${v.status === 'running' ? 87 : v.status === 'idle' ? 54 : 22}%, fuel ${v.fuel}%, status ${v.status}`).join('; ');
+        const text = await callAI(`You are a fleet maintenance AI for agricultural machinery in Nepal. Given these vehicles: ${vehData}. Provide a 3-point maintenance action plan (each under 20 words). Be specific about urgency and actions. No intro.`);
+        el.innerHTML = `<div class="ai-response"><b>🔧 AI Maintenance Plan</b><br><br>${text.replace(/\n/g, '<br>').replace(/\d\./g, m => `<b style="color:var(--ai3);">${m}</b>`)}</div>`;
+      } catch (e) { el.innerHTML = `<div class="ai-response">⚠️ Demo: 1. Combine 2WD — stop operation, hydraulic check urgent. 2. Tractor DI 35 — oil change within 12 hours. 3. Rotavator 245 — routine check after 50 more hours.</div>`; }
+    };
+
+    window.runBusinessAI = async function () {
+      const el = document.getElementById('business-ai-result');
+      el.style.display = 'block';
+      el.innerHTML = `<div class="ai-loading"><div class="spinner"></div>Generating business intelligence for ${aiLocation}...</div>`;
+      try {
+        const text = await callAI(`You are a business intelligence AI for Sajha Yantra, a Nepali agricultural machinery rental platform. For "${aiLocation}" in June monsoon season, provide 3 specific business recommendations for a service provider (each under 25 words). Focus on: pricing strategy, peak demand timing, customer retention. Format as numbered list. No intro.`);
+        el.innerHTML = `<div class="ai-response"><b>📊 AI Business Intelligence · ${aiLocation}</b><br><br>${text.replace(/\n/g, '<br>').replace(/\d\./g, m => `<b style="color:var(--ai3);">${m}</b>`)}</div>`;
+      } catch (e) { el.innerHTML = `<div class="ai-response">⚠️ Demo: 1. Raise price 10–15% Tue–Wed (peak demand, 18 bookings expected). 2. Offer 20% discount for pre-booking 3+ days. 3. SMS reminder to past customers about monsoon window closing.</div>`; }
+    };
+
+  </script>
+</body>
+
+</html>
