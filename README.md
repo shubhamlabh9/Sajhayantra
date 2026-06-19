@@ -103,4 +103,5 @@ Frontend Prototype / UI Demonstration
 
 ## Author
 
-Developed as an Agricultural Service Platform Concept for Nepal.
+Developed Ranjan Sharma and Team.
+Github Push by Shubham Kumar Labh.
